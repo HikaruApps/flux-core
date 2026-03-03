@@ -1,0 +1,70 @@
+[package]
+name = "flux-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Async runtime
+tokio = { version = "1.35", features = ["full"] }
+
+# REST API
+axum = "0.7"
+tower-http = { version = "0.5", features = ["cors"] }
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+
+# Async traits
+async-trait = "0.1"
+
+# Networking
+tokio-util = { version = "0.7", features = ["codec"] }
+bytes = "1.5"
+
+# Crypto
+x25519-dalek = { version = "2.0", features = ["static_secrets"] }
+sha2 = "0.10"
+hmac = "0.12"
+hkdf = "0.12"
+rand = "0.8"
+aes-gcm = "0.10"
+chacha20poly1305 = "0.10"
+base64 = "0.21"
+hex = "0.4"
+
+# TLS / QUIC
+rustls = "0.23"
+tokio-rustls = "0.25"
+webpki-roots = "0.26"
+rustls-pemfile = "2.0"
+quinn = "0.11"
+rcgen = "0.13"
+
+# UUID
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+# WireGuard userspace
+boringtun = "0.6"
+socket2 = { version = "0.5", features = ["all"] }
+
+# Socks5 proxy (для проксирования TCP/UDP через FluxTunnel)
+tokio-socks = "0.5"
+
+# YAML config
+serde_yaml = "0.9"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[profile.release]
+opt-level = 3
+lto = true
